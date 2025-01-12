@@ -11,18 +11,14 @@ logoutButton.action = function() {
   ApiConnector.logout((responseBody) => {
     if (responseBody.success) {
       location.reload();
-    } else {
-      console.error("Ошибка деавторизации:", responseBody);
-    }
+    } 
   });
 };
 
 ApiConnector.current((data) => {
   if (data.success) {
     ProfileWidget.showProfile(data.data);
-  } else {
-    console.error('Ошибка при получении данных текущего пользователя:', data.error);
-  }
+  } 
 });
 
 //Отображение курса валют
@@ -31,12 +27,9 @@ const ratesBoard = new RatesBoard();
 
 function handleStocksData(response) {
   if (response.success) {
-    // Очищаем таблицу
     ratesBoard.clearTable();
     ratesBoard.fillTable(response.data);
-  } else {
-    console.error("Ошибка получения курсов валют");
-  }
+  } 
 }
 
 function updateRates() {
@@ -44,8 +37,6 @@ function updateRates() {
     if (data.success) {
       ratesBoard.clearTable();
       ratesBoard.fillTable(data.data);
-    } else {
-      console.error("Ошибка при получении курсов валют: ", data.error);
     }
   });
 }
